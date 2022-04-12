@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cuprum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100&family=Cuprum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100&family=Cuprum&family=Gochi+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100&family=Cuprum&family=Gochi+Hand&family=Raleway:wght@100&display=swap');
+
+  .four{
+    padding:30px;
+  }
+  *{
+      font-family: 'Raleway', sans-serif;
+
+  }
+  body {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    text-align: left;
+    font-weight: 100;
+    font-size: 5;
+    color: #121212;
+  }
+  /* texts */
+  h1, h2, h3, h4 {
+    font-size: 40px;
+  }
+  h1, h2 {
+    padding: 20px;
+  }
+  h3, h4 {
+    padding: 30px;
+  }
+  .regular-text {
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top:20px;
+    padding-bottom: 20px;
+    line-height: 2;
+    font-size:17px;
+  }
+  .list{
+    line-height:2;
+    margin-left: 70px;
+    margin-right: 70px;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-size:17px;
+  }
+  .footnote {
+    padding-bottom:20px;
+    font-size: 14px;
+  }
+  /* images */
+  .gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+
+  .small-gallery-container {
+      margin-top: 40px;
+      margin-bottom: 30px;
+  }
+  .large-gallery-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .inline-image {
+    width: 33.3%;
+    text-align: center;
+  }
+  .inline-image-4 {
+    width: 25%;
+    text-align: center;
+  }
+  .inline-image-5 {
+    width: 20%;
+    text-align: center;
+  }
+  .image-container {
+    width: 40%;
+    text-align: center;
+    align-content: center;
+  }
+  .lecture {
+    margin-left: 100px;
+    margin-right: 20px;
+    text-align: center;
+  }
+
+
+
+</style>
+<title>CS 184 Final Project Proposal</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+
+<body>
+<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2022</h1>
+  <h1 align="middle">Final Project Proposal: Rendering mods for Games</h1>
+<p  class="regular-text" align="middle">Bohan Yu, Yao Fu Zuo, Sara Wang, Haojie Zhou</p>
+
+<br><br>
+
+<div>
+<h2 align="middle">Summary</h2>
+<p class="regular-text" >In our final project, we will be implementing path-tracing and different materials (e.g. mirroring, refraction, etc) in Minecraft to make the game more beautiful without sacrificing too much performance. We would play the game with the shader packages we’ve engineered, and we would compare the performance and the quality of the game scenes against those of the default packages.
+</p>
+
+
+<h2 align="middle">Problem Description</h2>
+
+<p class="regular-text" >Currently, the shaders in Minecraft are either too ugly or too computationally demanding due to lack of optimization, though some of them are due to very detailed textures. For example, the default texture—without any path-tracing—renders unrealistic torch, water, clouds, etc. The block-by-block lighting also adds lots of sharpness instead of smoothness to the game. In our final project, we will construct a considerably refined implementation of shaders that not only provides more delicate rendering, but also good runtime performance.
+</p>
+<p class="regular-text" >There are several challenging aspects of the project. First of all, it takes effort to depict a sense of realism in an abstract game environment that is constructed by blocks. However, we can rely on the physics of light reflections, refractions, and techniques of ray tracing to simulate real-world sophistication.
+</p>
+<p class="regular-text" > Second, since we are doing more complex graphics computations, keeping the time performance to an acceptable extent will also be a challenge. We can reduce the runtime burden by also making an optimization of the implementation with respect to time complexity.
+</p>
+
+
+
+<h2 align="middle">Goals and Deliverables</h2>
+<p class="regular-text" >We will create images with different scenes showing how different elements of the world have been modified to increase graphical fidelity. For example, we would like to show images to compare the vanilla version of the game’s water to our version of the game’s water.
+</p>
+<p class="regular-text" >Examples of what we will simulate:
+</p>
+<div class="large-gallery-container">
+  <div class="grid">
+    <div class="image-container">
+        <img src="images/1.png" width="90%" >
+        <p class="footnote">example 1</p>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="image-container">
+        <img src="images/2.png" width="90%">
+        <p class="footnote">example 2</p>
+    </div>
+  </div>
+</div>
+<p class="regular-text" >We intend to show a demo of running our game modifications to show the increase in graphical fidelity and/or performance. We will also show how the game looks like without modifications to show the difference. However, if the modification is very computationally demanding, we will switch to a video showcase.
+</p>
+<p class="regular-text" >We will measure quality by comparing it to the original game as well as existing shaders from the community. We can also compare the in-game behavior of objects to their behavior in the real world.
+</p>
+<p class="regular-text" >To measure performance, we can render a static environment within the game and record the frames per second when running different/no shaders.
+</p>
+
+
+
+
+
+
+
+<h2 align="middle">What questions do you plan to answer with your analysis?</h2>
+<p class="regular-text" >Why might people consider altering the graphics of a game?
+</p>
+<p class="regular-text" >How large of an improvement can optimizations(like using Stacks instead of recursion) make to rendering Minecraft scenes?
+</p>
+<p class="regular-text" >What visual improvements can we make without impacting game performance given our devices/technology today?
+</p>
+<p class="regular-text" >What materials could be visually the best choice for different minecraft blocks?
+</p>
+
+
+
+
+
+
+<h2 align="middle">What we plan to deliver</h2>
+<p class="regular-text" >
+Good choices of parameters to simulate realistic materials. Textures and materials show up properly: For example, surfaces should be sampled from real-world materials with realistic BRDFs.
+</p>
+<p class="regular-text" >Materials rendered correctly. For example, with the glass mirroring the light and the water refracting the light, the output value should be correct. (E.g. Reflecting the light should not make it brighter.)
+</p>
+<p class="regular-text" >Several objects that are the highlight of our visualization efforts: For example, glazing torch / candles, sophisticated shadows.
+</p>
+<p class="regular-text" >The game runs smoothly with path-tracing (>30 FPS AVG on a modern GPU (NVIDIA 3070 Ti))
+</p>
+
+
+<h2 align="middle">What we hope to accomplish</h2>
+<p class="regular-text" >When rendering scenes with similar quality, the performance of our shaders packages is more efficient than other online packages.
+</p>
+<p class="regular-text" >Since our shaders packages would be written mainly in OpenGL, we hope to apply this to other games that use the OpenGL library while using other modification injection tools such as ReShade.
+</p>
+
+<h2 align="middle">Why we think we can accomplish those goals</h2>
+<p class="regular-text" >The visual effects are supported by physics and the existing resources on the internet allow us to understand the inner workings of the game to the extent that we need in order to create these modifications. The game also uses fairly standard graphics libraries and common programming languages that we are either familiar with or are interested in learning.
+</p>
+
+<h2 align="middle">Schedule</h2>
+<p class="regular-text" >First week: Implement path tracing.</p>
+<p class="regular-text" >Second week: Implement different textures and materials.
+</p>
+<p class="regular-text" >Third and fourth week: optimize performance. We expect this to take much more time than scheduled, so we might drop some textures / materials tasks in the second week.
+</p>
+
+<h2 align="middle">Resources</h2>
+<p class="regular-text" >Note: The following list is not comprehensive, because there are simply too many existing shaders and instructions out there. </p>
+<p class="regular-text" >Links to some existing shader projects:</p>
+<p class="regular-text" ><a href="https://www.sonicether.com/seus/"> https://www.sonicether.com/seus/</a></p>
+<p class="regular-text" ><a href="https://continuum.graphics/"> https://continuum.graphics/</a></p>
+<p class="regular-text" ><a href="http://mod-minecraft.net/lagless-shaders-mod/"> http://mod-minecraft.net/lagless-shaders-mod/</a></p>
+<p class="regular-text" ><a href="https://mc-pc.net/shaders/69-naelegos-cel-shaders.html"> https://mc-pc.net/shaders/69-naelegos-cel-shaders.html</a></p>
+<p class="regular-text">Links to some existing resources of how to implement shaders:
+</p>
+<p class="regular-text" ><a href="https://www.youtube.com/watch?v=mDlmQYHApBU&ab_channel=NVIDIAGeForce"> https://www.youtube.com/watch?v=mDlmQYHApBU&ab_channel=NVIDIAGeForce</a></p>
+
+
+</body>
+</html>
