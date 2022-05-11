@@ -4,6 +4,7 @@
 <style>
 
 
+
 @import url('https://fonts.googleapis.com/css2?family=Cuprum&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100&family=Cuprum&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100&family=Cuprum&family=Gochi+Hand&display=swap');
@@ -12,6 +13,7 @@
   .four{
     padding:30px;
   }
+
   *{
       font-family: 'Raleway', sans-serif;
 
@@ -67,15 +69,18 @@
       margin-top: 40px;
       margin-bottom: 30px;
   }
+
   .large-gallery-container {
     margin-top: 50px;
     margin-bottom: 50px;
   }
+
   .grid {
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
   .inline-image {
     width: 33.3%;
     text-align: center;
@@ -88,137 +93,167 @@
     width: 20%;
     text-align: center;
   }
+
   .image-container {
     width: 40%;
     text-align: center;
     align-content: center;
   }
+
   .lecture {
     margin-left: 100px;
     margin-right: 20px;
     text-align: center;
   }
 
-
-
 </style>
-<title>CS 184 Final Project Proposal</title>
+<title>CS 184 FinalProject</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
 </head>
 
-
 <body>
 <h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2022</h1>
-  <h1 align="middle">Final Project Proposal: Rendering mods for Games</h1>
-<p  class="regular-text" align="middle">Bohan Yu, Yao Fu Zuo, Sara Wang, Hao Jie Zhou</p>
-
+  <h1 align="middle">Final Project: Better Visuals for Minecraft</h1>
+<p class="regular-text" align="middle">" In summary, we implemented an efficient shader that gives decent shadows to the game."<div class="gallery">
+  <img src="images/5.png" width=100%>
+  <img src="images/6.png" width=100%>
+  <!-- <img src="images/5.png" width=100%> -->
+</div>
+<p  class="regular-text" align="middle">Yaofu Zuo, Bohan Yu, Hao Jie Zhou, Sara Wang</p>
 <br><br>
 
+
+
+
 <div>
-<h2 align="middle">Summary</h2>
-<p class="regular-text" >In our final project, we will be implementing path-tracing and different materials (e.g. mirroring, refraction, etc) in Minecraft to make the game more beautiful without sacrificing too much performance. We would play the game with the shader packages we’ve engineered, and we would compare the performance and the quality of the game scenes against those of the default packages.
-</p>
-
-
-<h2 align="middle">Problem Description</h2>
-
-<p class="regular-text" >Currently, the shaders in Minecraft are either too ugly or too computationally demanding due to lack of optimization, though some of them are due to very detailed textures. For example, the default texture—without any path-tracing—renders unrealistic torch, water, clouds, etc. The block-by-block lighting also adds lots of sharpness instead of smoothness to the game. In our final project, we will construct a considerably refined implementation of shaders that not only provides more delicate rendering, but also good runtime performance.
-</p>
-<p class="regular-text" >There are several challenging aspects of the project. First of all, it takes effort to depict a sense of realism in an abstract game environment that is constructed by blocks. However, we can rely on the physics of light reflections, refractions, and techniques of ray tracing to simulate real-world sophistication.
-</p>
-<p class="regular-text" > Second, since we are doing more complex graphics computations, keeping the time performance to an acceptable extent will also be a challenge. We can reduce the runtime burden by also making an optimization of the implementation with respect to time complexity.
-</p>
+<h2 align="middle">Abstract</h2>
+<p class="regular-text" > In summary, we implemented an efficient shader that gives decent shadows to the game. Minecraft is a classic game, but the default visuals are pretty basic and unrealistic, it is especially obvious in the older versions of the game. Our overarching goal for this project is to implement a shader program that provides higher graphics fidelity, and we hope to enhance minecraft player’s gaming experience by improving visualizations of the game. </p>
 
 
 
-<h2 align="middle">Goals and Deliverables</h2>
-<p class="regular-text" >We will create images with different scenes showing how different elements of the world have been modified to increase graphical fidelity. For example, we would like to show images to compare the vanilla version of the game’s water to our version of the game’s water.
+<h2 align="middle">Part I: Technical Approach</h2>
+<h4 align="middle">Shader Pipeline</h4>
+<p class="regular-text" >A Shader program is what defines the graphics of the game. The shader folder contains various GLSL files, which are code we wrote for geometry, shadows, and lighting of the visualizations of the game. These made up the main components of the shader pipeline: the gbuffer shaders come first in the pipeline, as they are the main geometry passes, which allows you to render particles, block; The composite shaders then render the texture; Then the outputs are sent to the final shader and get rendered directly to the screen.</p>
+<h4 align="middle">Implementation Structure</h4>
+<p class="regular-text" >For this project, we started to write our shader packages from scratch because the code for the shader programs is surprisingly short. We first started by figuring out the basics of pipeline architecture by modifying the shaders file. In our project, we would be mainly focusing on the 2 full-screen passes, composite and final. </p>
+<p class="regular-text" >First, we implemented the final screen pass. We decided to not do any modifications to the rendering process for the final screen pass, so we simply sampled the color in the fragment shader using the built-in texture coordinates attribute passed from the vertex shader and output that color. Just to check the correctness of our understanding and implementation(because Minecraft would use the default shader if the custom shader does not work), we applied a grayscale to the game by dividing each component of the RGB vector by 3. This resulted in the image below, confirming our understanding of the final screen pass.
 </p>
-<p class="regular-text" >Examples of what we will simulate:
-</p>
+<div class="small-gallary-container">
+  <div class="grid">
+    <img src="images/grayscale.png" width=50%>
+  </div>
+</div>
+<p class="regular-text" >blahblahblah</p>
+<p class="regular-text" ></p>
+<p class="regular-text" ></p>
+<p class="regular-text" ></p>
+<p class="regular-text" ></p>
+<p class="regular-text" ></p>
+<p class="regular-text" ></p>
+<p class="regular-text" ></p>
+
+
+
+
+
+<h2 align="middle">Part II: Results</h2>
+<h4 align="middle">Minecraft with no Shaders vs. Minecraft with our Shader</h4>
+<p class="regular-text">Here we have a picture comparison of our Minecraft Test scene with and without shaders. After applying our shaders, you can see significant improvements across the entire test scene.</p>
 <div class="large-gallery-container">
   <div class="grid">
     <div class="image-container">
         <img src="images/1.png" width="90%" >
-        <p class="footnote">example 1</p>
+        <p class="footnote">no shader</p>
     </div>
-  </div>
-  <div class="grid">
     <div class="image-container">
-        <img src="images/2.png" width="90%">
-        <p class="footnote">example 2</p>
+        <img src="images/2.png" width="90%" >
+        <p class="footnote">our shader</p>
     </div>
   </div>
 </div>
-<p class="regular-text" >We intend to show a demo of running our game modifications to show the increase in graphical fidelity and/or performance. We will also show how the game looks like without modifications to show the difference. However, if the modification is very computationally demanding, we will switch to a video showcase.
+<h4 align="middle">Soft and Colored Shadows</h4>
+<p class="regular-text">Original implementation of Minecraft does not implement shadows. Applying our shader will add shadows with soft edges and proper coloring.</p>
+<div class="large-gallery-container">
+  <div class="grid">
+    <div class="image-container">
+        <img src="images/3.png" width="90%" >
+        <p class="footnote">default shader</p>
+    </div>
+    <div class="image-container">
+        <img src="images/4.png" width="90%" >
+        <p class="footnote">our shader</p>
+    </div>
+  </div>
+</div>
+<h4 align="middle">Shadows based on time of day</h4>
+<p class="regular-text">Shadows also move based on the time of day. If the sun of directly above the object, shadows will be shorter. If the sun is to the side of the object, the shadows will be elongated.
 </p>
-<p class="regular-text" >We will measure quality by comparing it to the original game as well as existing shaders from the community. We can also compare the in-game behavior of objects to their behavior in the real world.
-</p>
-<p class="regular-text" >To measure performance, we can render a static environment within the game and record the frames per second when running different/no shaders.
-</p>
+<div class="large-gallery-container">
+  <div class="grid">
+    <div class="image-container">
+        <img src="images/5.png" width="90%" >
+        <p class="footnote">noon</p>
+    </div>
+    <div class="image-container">
+        <img src="images/6.png" width="90%" >
+        <p class="footnote">sunset</p>
+    </div>
+  </div>
+</div>
+<h4 align="middle">Ambient and Diffuse Lighting</h4>
+<p class="regular-text">Lighting has also been re-done to account for ambient and diffuse lighting, pushing the sense of realism even further.</p>
+<div class="large-gallery-container">
+  <div class="grid">
+    <div class="image-container">
+        <img src="images/7.png" width="90%" >
+        <p class="footnote">ambient lighting</p>
+    </div>
+    <div class="image-container">
+        <img src="images/8.png" width="90%" >
+        <p class="footnote">diffuse lighting</p>
+    </div>
+  </div>
+</div>
+<h4 align="middle">Torch Lighting</h4>
+<p class="regular-text">Before making adjustments, the torch light was dim and barely visible. After we make modification in the shader, the lumination of the torch light is also amplified to better simulate real life torches. </p>
+<div class="large-gallery-container">
+  <div class="grid">
+    <div class="image-container">
+        <img src="images/9.png" width="90%" >
+        <p class="footnote">default shader</p>
+    </div>
+    <div class="image-container">
+        <img src="images/10.png" width="90%" >
+        <p class="footnote">our shader</p>
+    </div>
+  </div>
+</div>
 
 
 
 
+<h3 align="middle">References</h3>
+<ul class="list">
+  <li><a href="https://www.minecraft.net/en-us/about-minecraft">Minecraft</a></li>
+  <li><a href="https://optifine.net/home">Optifine website</a></li>
+  <li><a href="https://github.com/sp614x/optifine/blob/master/OptiFineDoc/doc/shaders.txt">Optifine Shader Documentation</a></li>
+  <li><a href="https://www.khronos.org/registry/OpenGL/specs/gl/glspec32.core.pdf">OpenGL 3.2 Documentation</a></li>
+  <li><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/">Alternate OpenGL Documentation</a></li>
+  <li><a href="http://learnopengl.com/Advanced-Lighting/Gamma-Correction">Gamma Correction</a></li>
+</ul>
 
 
 
-<h2 align="middle">What questions do you plan to answer with your analysis?</h2>
-<p class="regular-text" >Why might people consider altering the graphics of a game?
-</p>
-<p class="regular-text" >How large of an improvement can optimizations(like using Stacks instead of recursion) make to rendering Minecraft scenes?
-</p>
-<p class="regular-text" >What visual improvements can we make without impacting game performance given our devices/technology today?
-</p>
-<p class="regular-text" >What materials could be visually the best choice for different minecraft blocks?
-</p>
-
-
-
-
-
-
-<h2 align="middle">What we plan to deliver</h2>
-<p class="regular-text" >
-Good choices of parameters to simulate realistic materials. Textures and materials show up properly: For example, surfaces should be sampled from real-world materials with realistic BRDFs.
-</p>
-<p class="regular-text" >Materials rendered correctly. For example, with the glass mirroring the light and the water refracting the light, the output value should be correct. (E.g. Reflecting the light should not make it brighter.)
-</p>
-<p class="regular-text" >Several objects that are the highlight of our visualization efforts: For example, glazing torch / candles, sophisticated shadows.
-</p>
-<p class="regular-text" >The game runs smoothly with path-tracing (>30 FPS AVG on a modern GPU (NVIDIA 3070 Ti))
-</p>
-
-
-<h2 align="middle">What we hope to accomplish</h2>
-<p class="regular-text" >When rendering scenes with similar quality, the performance of our shaders packages is more efficient than other online packages.
-</p>
-<p class="regular-text" >Since our shaders packages would be written mainly in OpenGL, we hope to apply this to other games that use the OpenGL library while using other modification injection tools such as ReShade.
-</p>
-
-<h2 align="middle">Why we think we can accomplish those goals</h2>
-<p class="regular-text" >The visual effects are supported by physics and the existing resources on the internet allow us to understand the inner workings of the game to the extent that we need in order to create these modifications. The game also uses fairly standard graphics libraries and common programming languages that we are either familiar with or are interested in learning.
-</p>
-
-<h2 align="middle">Schedule</h2>
-<p class="regular-text" >First week: Implement path tracing.</p>
-<p class="regular-text" >Second week: Implement different textures and materials.
-</p>
-<p class="regular-text" >Third and fourth week: optimize performance. We expect this to take much more time than scheduled, so we might drop some textures / materials tasks in the second week.
-</p>
-
-<h2 align="middle">Resources</h2>
-<p class="regular-text" >Note: The following list is not comprehensive, because there are simply too many existing shaders and instructions out there. </p>
-<p class="regular-text" >Links to some existing shader projects:</p>
-<p class="regular-text" ><a href="https://www.sonicether.com/seus/"> https://www.sonicether.com/seus/</a></p>
-<p class="regular-text" ><a href="https://continuum.graphics/"> https://continuum.graphics/</a></p>
-<p class="regular-text" ><a href="http://mod-minecraft.net/lagless-shaders-mod/"> http://mod-minecraft.net/lagless-shaders-mod/</a></p>
-<p class="regular-text" ><a href="https://mc-pc.net/shaders/69-naelegos-cel-shaders.html"> https://mc-pc.net/shaders/69-naelegos-cel-shaders.html</a></p>
-<p class="regular-text">Links to some existing resources of how to implement shaders:
-</p>
-<p class="regular-text" ><a href="https://www.youtube.com/watch?v=mDlmQYHApBU&ab_channel=NVIDIAGeForce"> https://www.youtube.com/watch?v=mDlmQYHApBU&ab_channel=NVIDIAGeForce</a></p>
-
+<h3 align="middle">Contributions from each team member</h3>
+<ul class="list">
+  <li>All team members contributed equally in conducting research into the topic in the early stages of our project such as the OpenGL rendering pipeline and Minecraft shader documentation.</li>
+  <li>Hao Jie, Sara, and Bohan were responsible for reworking the lighting including ambient and diffuse lighting as well as implementing basic shadows.</li>
+  <li>Yaofu and Bohan were responsible for refining the shadows to have softer, realistic details and proper coloring for translucent objects.</li>
+  <li>Yaofu also corrected the lighting to account for gamma correction./li>
+  <li>All team members were in constant communication throughout the entire project via Zoom and WeChat.</li>
+  <li>All team members were involved in working on/testing the program together via Zoom screen sharing.</li>
+</ul>
 
 </body>
 </html>
